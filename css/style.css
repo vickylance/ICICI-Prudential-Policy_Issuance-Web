@@ -1,44 +1,58 @@
-/*--------------------
-Body
---------------------*/
+/*Color Themes*/
 
-*,
-*::before,
-*::after {
+
+/*
+dark yellow: rgb(224, 158, 6);
+yellow: rgb(249, 185, 32);
+light yellow: rgb(251, 208, 106);
+very light yellow: rgb(251, 223, 157);
+
+dark red: rgb(151, 41, 30);
+red: rgb(170, 6, 20);
+light red: rgb(246, 9, 29);
+very light red: rgb(248, 58, 74);
+*/
+
+.chatBot *,
+.chatBot *::before,
+.chatBot *::after {
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-}
-
-body {
-  font-family: 'Open Sans', sans-serif;
+div.chatBot {
+  font-family: 'robotoregular';
   font-size: 12px;
   line-height: 1.3;
   overflow: hidden;
+  height: 100%;
 }
-a:hover, a:active, a:focus, button:hover, button:active, button:focus {
+
+.chatBot a:hover,
+.chatBot a:active,
+.chatBot a:focus,
+.chatBot button:hover,
+.chatBot button:active,
+.chatBot button:focus {
   outline: 0;
 }
+
 
 /*--------------------
 Chat
 --------------------*/
 
 .chat {
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  right: 2%;
+  margin: 0 0 -344px 0;
+  right: 30px;
   width: 300px;
-  height: 60vh;
+  height: 400px;
   max-height: 500px;
-  margin: 0 0 -53vh 0;
   z-index: 2;
   overflow: hidden;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
   border-radius: 20px 20px 0 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -56,34 +70,34 @@ Chat
   transition: all .4s ease-in-out;
 }
 
+
 /*--------------------
 Chat Title
 --------------------*/
 
 .chat-title {
   -webkit-box-flex: 0;
-  -webkit-flex: 0 1 45px;
-  -ms-flex: 0 1 45px;
-  flex: 0 1 45px;
+  -webkit-flex: 0 1 56px;
+  -ms-flex: 0 1 56px;
+  flex: 0 1 56px;
   position: relative;
   z-index: 2;
-  background: rgb(2, 53, 100);
-  color: rgb(255, 255, 255);
+  background: rgb(151, 41, 30);
+  color: white;
   text-transform: uppercase;
   text-align: left;
-  padding: 10px 10px 10px 5px;
+  padding: 10px 10px 10px 50px;
 }
 
 .chat-title h1,
 .chat-title h2 {
   font-weight: normal;
   font-size: 12px;
-  margin: 0 0 0 20px;
+  margin: 5px 0 0 15px;
   padding: 0;
 }
 
 .chat-title h2 {
-  color: rgb(255, 255, 255);
   color: rgba(255, 255, 255, 0.5);
   font-size: 8px;
   letter-spacing: 1px;
@@ -92,9 +106,9 @@ Chat Title
 .chat-title .avatar {
   position: absolute;
   z-index: 1;
-  top: 10px;
+  top: 11px;
   left: 12px;
-  width: 50px;
+  width: 35px;
   height: auto;
   overflow: hidden;
   margin: 0;
@@ -110,7 +124,7 @@ Chat Title
 .chat-title .chat-minmax {
   position: absolute;
   z-index: 1;
-  top: 10px;
+  top: 17px;
   right: 20px;
   background-color: rgba(0, 0, 0, 0.2);
   color: white;
@@ -127,6 +141,7 @@ Chat Title
   background-color: rgba(255, 255, 255, 0.5);
 }
 
+
 /*--------------------
 Messages
 --------------------*/
@@ -136,8 +151,7 @@ Messages
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  /*color: rgba(170, 6, 20, 1);*/
-  color: rgba(255, 255, 255, 1);
+  color: white;
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -147,7 +161,7 @@ Messages
   position: absolute;
   top: 0;
   left: 0;
-  height: 101%;
+  height: 100%;
   width: 100%;
 }
 
@@ -156,9 +170,22 @@ Messages
   float: left;
   padding: 6px 10px 7px;
   border-radius: 10px 10px 10px 0;
-  /*background: rgba(249, 185, 32, 1);*/
-  background: rgb(80, 145, 202);
+  background: rgb(231, 120, 23);
   margin: 8px 0 16px 0;
+  font-size: 11px;
+  line-height: 1.4;
+  margin-left: 35px;
+  position: relative;
+}
+
+.messages .chatBtnHolder {
+  clear: both;
+  float: left;
+  padding: 6px 10px;
+  margin: 3% 1%;
+  width: 98%;
+  border-radius: 10px;
+  background: rgb(231, 120, 23);
   font-size: 11px;
   line-height: 1.4;
   position: relative;
@@ -168,18 +195,29 @@ Messages
   position: absolute;
   bottom: -17px;
   font-size: 9px;
-  color: rgba(255, 255, 255, 0.7);
+  color: white;
   left: -1px;
   width: 50px;
   text-align: left;
 }
 
+
+/*.messages .chatBtnHolder .timestamp{
+  position: absolute;
+  bottom: -10px;
+  font-size: 9px;
+  color: white;
+  width: 100%;
+  text-align: center;
+  overflow: visible;
+  z-index: 1000;
+}*/
+
 .messages .message::before {
   content: '';
   position: absolute;
   bottom: -6px;
-  /*border-top: 6px solid rgba(249, 185, 32, 1);*/
-  border-top: 6px solid rgb(80, 145, 202);
+  border-top: 6px solid rgb(231, 120, 23);
   left: 0;
   border-right: 7px solid transparent;
 }
@@ -206,11 +244,9 @@ Messages
 .messages .message.message-personal {
   float: right;
   right: 5px;
-  /*color: rgba(249, 185, 32, 1);*/
-  color: rgba(255, 255, 255, 1);
+  color: white;
   text-align: right;
-  /*background: rgba(170, 6, 20, 1);*/
-  background: rgb(3, 89, 167);
+  background: rgb(151, 41, 30);
   border-radius: 10px 10px 0 10px;
 }
 
@@ -219,7 +255,7 @@ Messages
   right: 0;
   border-right: none;
   border-left: 5px solid transparent;
-  border-top: 4px solid rgb(3, 89, 167);
+  border-top: 4px solid rgb(151, 41, 30);
   bottom: -4px;
 }
 
@@ -227,7 +263,8 @@ Messages
   margin-bottom: 30px;
 }
 
-.messages .message.new {
+.messages .message.new,
+.messages .chatBtnHolder.new {
   -webkit-transform: scale(0);
   transform: scale(0);
   -webkit-transform-origin: 0 0;
@@ -316,7 +353,7 @@ Message Box
   -ms-flex: 0 1 40px;
   flex: 0 1 40px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
   padding: 10px;
   position: relative;
 }
@@ -331,7 +368,7 @@ Message Box
   height: 20px;
   margin: 0;
   padding-right: 20px;
-  width: 245px;
+  width: 265px;
 }
 
 .message-box textarea:focus:-webkit-placeholder {
@@ -343,9 +380,9 @@ Message Box
   z-index: 1;
   top: 10px;
   right: 10px;
-  color: rgb(255,255,255);
+  color: white;
   border: none;
-  background: rgb(36, 138, 82);
+  background: #248A52;
   font-size: 10px;
   text-transform: uppercase;
   line-height: 1;
@@ -357,7 +394,16 @@ Message Box
 }
 
 .message-box .message-submit:hover {
-  background: rgb(47, 178, 106);
+  background: #2fb26a;
+}
+
+.message-box .message-submit:disabled {
+  padding: 4px 8px;
+  border: 2px solid ButtonFace;
+  color: GrayText;
+  cursor: not-allowed;
+  background-color: #ddd;
+  background: #ddd;
 }
 
 
@@ -516,38 +562,65 @@ Bounce
   }
 }
 
+
 /*--------------------
 Bounce Animations
 --------------------*/
+
+
 /*
  * Animation configurations ( duration and fill mode )
  */
- .animated {
+
+.animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
+
 @-webkit-keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}
-  40% {-webkit-transform: translateY(-30px);}
-  60% {-webkit-transform: translateY(-15px);}
-} 
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -webkit-transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-30px);
+  }
+  60% {
+    -webkit-transform: translateY(-15px);
+  }
+}
+
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-  40% {transform: translateY(-30px);}
-  60% {transform: translateY(-15px);}
-} 
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
 .bounce {
   -webkit-animation-name: bounce;
   animation-name: bounce;
 }
 
-.animHelpText{
+#animHelpText {
   position: fixed;
-  bottom: 50px;
+  bottom: 70px;
   right: 30px;
-  color: rgba(255, 255, 255, 1);
+  color: white;
   font-size: 12px;
   width: 200px;
   -webkit-box-shadow: 0 8px 6px -6px black;
@@ -556,31 +629,147 @@ Bounce Animations
   text-align: center;
   border-radius: 30px;
   padding: 10px;
-  background-color:rgb(3, 89, 167);
-  /*background-color:rgba(3, 89, 167, 1);*/
+  background-color: rgb(5, 60, 109);
 }
 
-.animHelpText::before {
+#animHelpText::before {
   left: auto;
   right: 0;
   z-index: 10000;
   border-right: none;
   border-left: 5px solid transparent;
-  border-top: 4px solid rgb(255, 255, 255);
-  /*border-top: 4px solid rgba(255, 255, 255, 1);*/
+  border-top: 4px solid rgb(170, 6, 20);
   bottom: -4px;
 }
 
-.button{
+.chatBtn {
+  box-sizing: border-box;
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
-  margin: 3px;
-  color: rgb(255, 255, 255);
-  /*color: rgba(255, 255, 255, 1);*/
-  background-color: rgb(3, 89, 167);
-  /*background-color: rgba(3, 89, 167, 1);*/
+  margin: 1%;
+  color: white;
+  background-color: rgb(151, 41, 30);
+  width: 48%;
+  word-wrap: break-word;
 }
 
-/*rgb(2, 53, 100)*/
-/*rgb(3, 89, 167)*/
+.chatBtn:hover {
+  background-color: rgb(170, 6, 20);
+}
+
+.chatBtn:active {
+  background-color: rgb(246, 9, 29);
+}
+
+.chatBtn:disabled {
+  border-radius: 5px;
+  padding: 3px 8px;
+  border: 2px solid ButtonFace;
+  color: GrayText;
+  cursor: not-allowed;
+  background-color: #ddd;
+  background: #ddd;
+}
+
+md-autocomplete input:not(.md-input) {
+  height: 24px !important;
+  color: white !important;
+}
+
+.md-autocomplete-suggestions-container.md-default-theme li:hover,
+.md-autocomplete-suggestions-container li:hover,
+.md-autocomplete-suggestions-container.md-default-theme li.selected,
+.md-autocomplete-suggestions-container li.selected {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.md-autocomplete-suggestions-container.md-default-theme li,
+.md-autocomplete-suggestions-container li {
+  color: rgb(238, 238, 238) !important;
+}
+
+.md-autocomplete-suggestions {
+  background: rgba(0, 0, 0, 0.9) !important;
+}
+
+.md-autocomplete-suggestions li {
+  height: 30px !important;
+  padding: 0px 5px !important;
+  font-size: 13px !important;
+  line-height: 30px !important;
+}
+
+md-autocomplete button md-icon {
+  top: 20% !important;
+  left: 30% !important;
+}
+
+md-autocomplete-wrap {
+  width: 110%;
+}
+
+.md-virtual-repeat-container.md-autocomplete-suggestions-container {
+  position: fixed !important;
+  left: auto !important;
+  right: 2% !important;
+  width: 300px !important;
+  bottom: 40px !important;
+}
+
+.buy-insurance {
+  padding: 5px 10px;
+  color: white;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8);
+  font-size: 12px;
+}
+
+.buy-insurance-btn {
+  border-radius: 5px;
+  border: 2px solid rgb(224, 158, 6);
+  overflow: hidden;
+  background: rgb(151, 41, 30);
+  color: white;
+  padding: 2px 5px;
+}
+
+.buy-insurance-btn:hover {
+  border-radius: 5px;
+  border: 2px solid rgb(170, 6, 20);
+  overflow: hidden;
+  background: rgb(249, 185, 32);
+  color: white;
+  padding: 2px 5px;
+}
+
+.buy-insurance-btn:active {
+  border-radius: 5px;
+  border: 2px solid rgb(246, 9, 29);
+  overflow: hidden;
+  background: rgb(251, 208, 106);
+  color: white;
+  padding: 2px 5px;
+}
+
+.disabledCursor {
+  cursor: not-allowed;
+}
+
+.message-input:disabled {
+  cursor: not-allowed;
+}
+
+.ui-autocomplete.ui-widget {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.ui-autocomplete {
+  position: fixed;
+  width: 280px;
+}
+
+.datepicker-container {
+  background-color: rgb(51, 51, 51) !important;
+}
