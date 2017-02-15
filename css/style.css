@@ -676,6 +676,9 @@ Bounce Animations
  .emoji {
   width: 17%; 
 }
+ .emoji.jqactive{
+  background-color:rgb(246, 9, 29);
+}
 
 md-autocomplete input:not(.md-input) {
   height: 24px !important;

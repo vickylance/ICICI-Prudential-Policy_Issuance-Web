@@ -118,23 +118,17 @@ app.controller('ExampleController', ['$scope', '$http', function ($scope, $http)
 		}
 		j('.message.loading').remove();
 		j('.message.timestamp').remove();
-		var temp = j('<div class="message"><figure class="avatar"><img src="icon.png" /></figure>' + botmsg + '</div>');
-		temp.appendTo(j('.mCSB_container')).addClass('new');
+		if(feedback === true){
+			var temp = j('<div class="message"><figure class="avatar"><img src="icon.png" /></figure>Please provide a feedback<br /><img class="chatBtn emoji jqactive" isactive="false" rating="5" src="images/happy.png"/><img class="chatBtn emoji" isactive="false" rating="4" src="images/good.png"/><img class="chatBtn emoji" rating="3" isactive="false" src="images/okay.png"/><img class="chatBtn emoji" isactive="false" rating="2" src="images/bad.png"/><img class="chatBtn emoji" isactive="false" rating="1" src="images/poor.png"/><br /><table><tr><td> Enter your comments: </td><td><textarea id="comment" name="comments" placeholder="Please enter your comments here here"></textarea></td></tr></table><input class="chatBtn" id="send_feedback" type="submit" value="Send" /></div>');
+			temp.appendTo(j('.mCSB_container')).addClass('new');
+		}
+		else{
+			var temp = j('<div class="message"><figure class="avatar"><img src="icon.png" /></figure>' + botmsg + '</div>');
+			temp.appendTo(j('.mCSB_container')).addClass('new');
+		}
 		setDate(temp);
 		updateScrollbar();
 		playSound('bing');
-
-		if(feedback !== undefined){
-			console.log("true");
-			j('.message.loading').remove();
-			j('.message.timestamp').remove();
-			var temp = j('<div class="message"><figure class="avatar"><img src="icon.png" /></figure>Please provide a feedback<br /><img class="chatBtn emoji" rating="5" src="images/happy.png"/><img class="chatBtn emoji" rating="4" src="images/good.png"/><img class="chatBtn emoji" rating="3" src="images/okay.png"/><img class="chatBtn emoji" rating="2" src="images/bad.png"/><img class="chatBtn emoji" rating="1" src="images/poor.png"/><br /><table><tr><td> Enter your comments: </td><td><textarea id="comment" name="comments" placeholder="Please enter your comments here here"></textarea></td></tr></table><input class="chatBtn" id="send_feedback" type="submit" value="Send" /></div>');
-			temp.appendTo(j('.mCSB_container')).addClass('new');
-			setDate(temp);
-			updateScrollbar();
-			playSound('bing');
-		}
-
 
 	};
 
@@ -143,7 +137,28 @@ app.controller('ExampleController', ['$scope', '$http', function ($scope, $http)
 	};
 
 	j("body").on("click",".emoji",function(){
-		insertMessage(j(this).attr("rating"));
+		//insertMessage(j(this).attr("rating"));
+		j('.emoji').each(function(){
+			j(this).attr("isactive","false");
+			j(this).removeClass("jqactive");
+		});
+		j(this).addClass("jqactive");
+		j(this).attr("isactive","true");
+		
+	});
+
+	j("body").on("mouseover","#send_feedback",function(){
+		if(j('textarea').val().length === 0){
+			j(this).prop("disabled","true");
+		}
+		else{
+			j(this).removeAttr("disabled");
+		}
+	});
+
+	j('body').on("click","#send_feedback",function(){
+		console.log("clicked");
+		insertMessage("User has a given a rating of "+j('.emoji.jqactive').attr("rating")+" and commented '"+j('textarea').val() +"' ");
 	});
 
 }]);
