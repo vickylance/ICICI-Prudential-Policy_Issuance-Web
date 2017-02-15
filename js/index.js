@@ -117,7 +117,7 @@ app.controller('ExampleController', ['$scope', '$http', function ($scope, $http)
 		}
 		j('.message.loading').remove();
 		j('.message.timestamp').remove();
-		var temp = j('<div class="message">' + botmsg + '</div>');
+		var temp = j('<div class="message"><figure class="avatar"><img src="icon.png" /></figure>' + botmsg + '</div>');
 		temp.appendTo(j('.mCSB_container')).addClass('new');
 		setDate(temp);
 		updateScrollbar();
