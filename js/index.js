@@ -18,7 +18,7 @@ app.controller('ExampleController', ['$scope', '$http', function ($scope, $http)
 			console.log(response);
 			console.log("success");
 			$scope.conversationId = response.data['conversationId'];
-			j('<div class="message loading new"><span></span></div>').appendTo(j('.mCSB_container'));
+			j('<div class="message loading new"><figure class="avatar"><img src="icon.png" /></figure><span></span></div>').appendTo(j('.mCSB_container'));
 			setTyping();
 			updateScrollbar();
 			setTimeout(function () {
