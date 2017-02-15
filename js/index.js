@@ -70,6 +70,7 @@ app.controller('ExampleController', ['$scope', '$http', function ($scope, $http)
 		messages.mCustomScrollbar();
 		setTimeout(function () {
 			botMessage("Hi! I'm your insurance advisor. How may I help you.");
+			botMessage('how would you rate this convo',true);
 		}, 100);
 	});
 
@@ -111,7 +112,7 @@ app.controller('ExampleController', ['$scope', '$http', function ($scope, $http)
 		updateScrollbar();
 	};
 
-	function botMessage(botmsg) {
+	function botMessage(botmsg, feedback) {
 		if (j('.message-input').val() != '') {
 			return false;
 		}
@@ -122,11 +123,29 @@ app.controller('ExampleController', ['$scope', '$http', function ($scope, $http)
 		setDate(temp);
 		updateScrollbar();
 		playSound('bing');
+
+		if(feedback !== undefined){
+			console.log("true");
+			j('.message.loading').remove();
+			j('.message.timestamp').remove();
+			var temp = j('<div class="message"><figure class="avatar"><img src="icon.png" /></figure>Please provide a feedback<br /><img class="chatBtn emoji" rating="5" src="images/happy.png"/><img class="chatBtn emoji" rating="4" src="images/good.png"/><img class="chatBtn emoji" rating="3" src="images/okay.png"/><img class="chatBtn emoji" rating="2" src="images/bad.png"/><img class="chatBtn emoji" rating="1" src="images/poor.png"/><br /><table><tr><td> Enter your comments: </td><td><textarea id="comment" name="comments" placeholder="Please enter your comments here here"></textarea></td></tr></table><input class="chatBtn" id="send_feedback" type="submit" value="Send" /></div>');
+			temp.appendTo(j('.mCSB_container')).addClass('new');
+			setDate(temp);
+			updateScrollbar();
+			playSound('bing');
+		}
+
+
 	};
 
 	function playSound(filename) {
 		document.getElementById("sound").innerHTML = '<audio autoplay="autoplay"><source src="' + filename + '.mp3" type="audio/mpeg" /><source src="' + filename + '.ogg" type="audio/ogg" /><embed hidden="true" autostart="true" loop="false" src="' + filename + '.mp3" /></audio>';
 	};
+
+	j("body").on("click",".emoji",function(){
+		insertMessage(j(this).attr("rating"));
+	});
+
 }]);
 
 var setTimeoutID;
