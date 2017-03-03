@@ -120,13 +120,12 @@ app.controller('ExampleController', ['$scope', '$http', function ($scope, $http)
 		j('.message.loading').remove();
 		j('.message.timestamp').remove();
 
-		var temp = j('<div class="message"><figure class="avatar"><img src="icon.png" /></figure><div class="botmessage">' + botmsg + '</div><br /></div>');
+		var temp = j('<div class="message"><figure class="avatar"><img src="icon.png" /></figure><div class="botmessage">' + botmsg + '</div></div>');
 		temp.appendTo(j('.mCSB_container')).addClass('new');
 
 		setDate(temp);
 		updateScrollbar();
 		playSound('bing');
-
 	};
 
 	function playSound(filename) {

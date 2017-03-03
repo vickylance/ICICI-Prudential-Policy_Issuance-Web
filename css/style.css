@@ -92,7 +92,7 @@ Chat Title
 .chat-title h2 {
   font-weight: normal;
   font-size: 12px;
-  margin: 5px 0 0 15px;
+  margin: 5px 0 0 0;
   padding: 0;
 }
 
